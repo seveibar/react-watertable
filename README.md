@@ -9,6 +9,9 @@ Watertable values simplicity, great user experience and extensive capability.
 # Usage
 
 ```javascript
+import React from "react"
+import Watertable from "react-watertable"
+
 const mySchema = {
   name: {
     title: "Name",
