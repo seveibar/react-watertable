@@ -39,7 +39,8 @@ const MyApp = () => (
 
 - Validate user input
 - Editable/read-only cells
-- Asynchronous data retrieval (i.e. make API calls to populate table)
+- Asynchronous row retrieval (i.e. make API calls to populate table)
+- Asynchronous option retrieval/search
 - Filtering and sorting
 - Hiding columns
 - Nested objects as cell values
@@ -47,9 +48,12 @@ const MyApp = () => (
 
 # Props
 
-| Props      | Type                                               | Description                                                                         |
-| ---------- | -------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| schema     | `{[ColumnName: string]: SchemaDefinition}`         | Describes the data type of each column.                                             |
-| data       | `Array<Object>`                                    | (optional) All the rows of the table.                                               |
-| getData    | `(DataSearchQuery) => Promise<Array<Object>>`      | (optional) Method to retrieve data.                                                 |
-| renderCell | `(schemaInfo, value, onChange) => React.Component` | (optional) Method to render a cell. Return null to fallback to watertable renderer. |
+| Props      | Type                                                            | Description                                                                                                |
+| ---------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| schema     | `{[ColumnName: string]: SchemaDefinition}`                      | Describes the data type of each column.                                                                    |
+| data       | `Array<Object>`                                                 | (optional) All the rows of the table.                                                                      |
+| getData    | `(DataSearchQuery) => Promise<Array<Object>>`                   | (optional) Method to retrieve data.                                                                        |
+| renderCell | `(schemaInfo, value, onChange) => React.Component`              | (optional) Method to render a cell. Return null to fallback to watertable renderer.                        |
+| onChange   | `(newData: Array<Object>) => any`                               | (optional) Called whenever a cell has changed.                                                             |
+| onSave     | `(newData: Array<Object>) => any`                               | (optional) If specified, a save button is placed in the table header. This method is called on save press. |
+| getOptions | `(columnName: string, input: string) => Promise<Array<Option>>` | (optional) Columns without static options will call this method on user input.                             |
