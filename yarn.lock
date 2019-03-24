@@ -1037,6 +1037,12 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
+"@rehooks/window-size@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@rehooks/window-size/-/window-size-1.0.2.tgz#24583dda021969e7b7166b923b055a47cca4e4b5"
+  dependencies:
+    react "^16.7.0-alpha.0"
+
 "@storybook/addon-actions@^5.1.0-alpha.13":
   version "5.1.0-alpha.13"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.1.0-alpha.13.tgz#66aabc7938db86e27daab7a5486b22fcaee3415f"
@@ -9076,7 +9082,7 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react@^16.7.0, react@^16.8.4, react@^16.8.5:
+react@^16.7.0, react@^16.7.0-alpha.0, react@^16.8.4, react@^16.8.5:
   version "16.8.5"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.5.tgz#49be3b655489d74504ad994016407e8a0445de66"
   dependencies:

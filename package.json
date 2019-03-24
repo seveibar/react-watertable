@@ -29,6 +29,7 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^3.0.0-alpha.10",
+    "@rehooks/window-size": "^1.0.2",
     "@storybook/addon-actions": "^5.1.0-alpha.13",
     "@storybook/addon-links": "^5.1.0-alpha.13",
     "@storybook/addons": "^5.1.0-alpha.13",

@@ -1,6 +1,6 @@
 import React from "react"
 import { configure, addDecorator } from "@storybook/react"
-// import Theme from "../src/components/Theme"
+import Theme from "../src/components/Theme"
 
 addDecorator(storyFn => <Theme>{storyFn()}</Theme>)
 function loadStories() {
