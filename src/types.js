@@ -1,6 +1,10 @@
 // @flow
 
-export type BaseColumn = {| title: string, multiple?: boolean |}
+export type BaseColumn = {|
+  title: string,
+  multiple?: boolean,
+  primary?: boolean
+|}
 
 export type TextColumn = {|
   ...BaseColumn,

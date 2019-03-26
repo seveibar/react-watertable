@@ -4,7 +4,7 @@ install()
 
 import React, { createContext, useContext } from "react"
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme"
-import { blue } from "@material-ui/core/colors"
+import { blue, grey } from "@material-ui/core/colors"
 import useWindowSize from "@rehooks/window-size"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
 
@@ -36,7 +36,8 @@ const ThemeContext = createContext({
   windowSize: {
     innerWidth: window.innerWidth,
     innerHeight: window.innerHeight
-  }
+  },
+  borderStyle: "1px solid " + grey[400]
 })
 
 export const useTheme = () => useContext(ThemeContext)
@@ -47,7 +48,8 @@ export const Theme = ({ children }) => {
   return (
     <ThemeContext.Provider
       value={{
-        windowSize
+        windowSize,
+        borderStyle: "1px solid " + grey[400]
       }}
     >
       <ThemeProvider theme={themeOld}>{children}</ThemeProvider>
