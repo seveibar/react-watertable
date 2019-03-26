@@ -34,7 +34,7 @@ export const BaseCell = ({
       style={{
         height,
         cursor: !selected && editable ? "pointer" : undefined,
-        overflow: "hidden",
+        // overflow: "hidden",
         paddingLeft: 8,
         paddingRight: 8,
         fontSize: 14,

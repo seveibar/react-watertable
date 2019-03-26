@@ -36,6 +36,7 @@
     "@storybook/cli": "^5.0.4",
     "@storybook/react": "^5.1.0-alpha.13",
     "babel-loader": "^8.0.5",
+    "color-convert": "^2.0.0",
     "flow-bin": "^0.95.1",
     "react-select": "^2.4.2"
   }

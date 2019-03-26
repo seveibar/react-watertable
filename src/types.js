@@ -13,7 +13,8 @@ export type TextColumn = {|
 
 export type SelectColumn = {|
   ...BaseColumn,
-  type: "select"
+  type: "select",
+  options: Array<{ value: string, label: string, color?: string } | string>
 |}
 
 export type FileColumn = {|
