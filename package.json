@@ -39,6 +39,7 @@
     "color-convert": "^2.0.0",
     "flow-bin": "^0.95.1",
     "react-contextmenu": "^2.11.0",
+    "react-dropzone": "^10.1.0",
     "react-select": "^2.4.2"
   }
 }

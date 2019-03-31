@@ -29,6 +29,7 @@ storiesOf("Watertable", module)
         { name: "Charlie", color: "red" },
         { name: "Sarah", color: "blue" }
       ]}
+      onChangeData={action("onChangeData")}
     />
   ))
   .add("All Cell Types", () => (
@@ -84,11 +85,16 @@ storiesOf("Watertable", module)
             task: { title: "Task", type: "text" },
             done: { title: "Done", type: "boolean" }
           }
+        },
+        someFile: {
+          title: "Some File",
+          type: "file"
         }
       }}
       data={[
         { name: "Charlie", color: "red", likesDogs: true },
         { name: "Sarah", color: "blue" }
       ]}
+      onChangeData={action("onChangeData")}
     />
   ))

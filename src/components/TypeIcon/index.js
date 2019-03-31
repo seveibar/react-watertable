@@ -22,7 +22,7 @@ export const TypeIcon = props => {
       return <LocalOffer {...props} />
     }
     case "file": {
-      return <File {...props} />
+      return <InsertDriveFile {...props} />
     }
     case "image": {
       if (multiple) return <Collections {...props} />

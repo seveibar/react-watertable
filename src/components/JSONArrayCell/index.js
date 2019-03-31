@@ -9,8 +9,17 @@ import DialogContent from "@material-ui/core/DialogContent"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import DialogActions from "@material-ui/core/DialogActions"
 import Watertable from "../Watertable"
+import { makeStyles } from "@material-ui/styles"
+import { grey } from "@material-ui/core/colors"
+
+const useStyles = makeStyles({
+  soft: {
+    color: grey[600]
+  }
+})
 
 export const JSONArrayCell = props => {
+  const c = useStyles()
   const [editing, changeEditing] = useState(false)
   const columns = Object.entries(props.schema).map(([id, def]) => ({
     id,
@@ -20,34 +29,13 @@ export const JSONArrayCell = props => {
   const primaryKey = primaryCol ? primaryCol.id : undefined
   return (
     <BaseCell {...props} centered>
+      <div className={c.soft}>({(props.value || []).length} Items)</div>
       <Button onClick={() => changeEditing(true)}>Edit</Button>
       {editing && (
         <Dialog open onClose={() => changeEditing(false)}>
           <div style={{ minWidth: 500 }}>
             <Watertable
               tableName={props.title}
-              // onChange={(key, col, val) => {
-              //   const data = props.value || []
-              //   let newData = []
-              //   let cellEdited = false
-              //   for (let i = 0; i < data.length; i++) {
-              //     const rowId = primaryKey ? data[i][primaryKey] : i
-              //     if (rowId !== key) {
-              //       newData.push(data[i])
-              //     } else {
-              //       cellEdited = true
-              //       newData.push({
-              //         ...data[i],
-              //         [col]: val
-              //       })
-              //     }
-              //   }
-              //   if (!cellEdited) {
-              //     // create new row
-              //     newData.push({ [col]: val })
-              //   }
-              //   props.onChange(newData)
-              // }}
               onChangeData={data => props.onChange(data)}
               schema={props.schema}
               data={props.value || []}
