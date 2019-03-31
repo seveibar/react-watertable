@@ -10,6 +10,7 @@ import NumericCell from "../NumericCell"
 import BooleanCell from "../BooleanCell"
 import JSONCell from "../JSONCell"
 import JSONArrayCell from "../JSONArrayCell"
+import MarkdownCell from "../MarkdownCell"
 
 export const Cell = (props: ColumnSchema) => {
   switch (props.type) {
@@ -36,6 +37,9 @@ export const Cell = (props: ColumnSchema) => {
     }
     case "json-array": {
       return <JSONArrayCell {...props} />
+    }
+    case "markdown": {
+      return <MarkdownCell {...props} />
     }
   }
   throw new Error(

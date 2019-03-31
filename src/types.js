@@ -37,6 +37,11 @@ export type NumericColumn = {|
   type: "numeric"
 |}
 
+export type MarkdownColumn = {|
+  ...BaseColumn,
+  type: "markdown"
+|}
+
 export type JSONColumn = {|
   ...BaseColumn,
   type: "json",
@@ -60,6 +65,7 @@ export type ColumnSchema =
   | NumericColumn
   | JSONColumn
   | JSONArrayColumn
+  | MarkdownColumn
 
 export type TableSchema = {
   [columnId: string]: ColumnSchema

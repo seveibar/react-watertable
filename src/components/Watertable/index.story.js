@@ -89,6 +89,10 @@ storiesOf("Watertable", module)
         someFile: {
           title: "Some File",
           type: "file"
+        },
+        markdown: {
+          title: "Markdown Cells",
+          type: "markdown"
         }
       }}
       data={[

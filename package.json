@@ -40,6 +40,8 @@
     "flow-bin": "^0.95.1",
     "react-contextmenu": "^2.11.0",
     "react-dropzone": "^10.1.0",
-    "react-select": "^2.4.2"
+    "react-mde": "^7.0.4",
+    "react-select": "^2.4.2",
+    "showdown": "^1.9.0"
   }
 }

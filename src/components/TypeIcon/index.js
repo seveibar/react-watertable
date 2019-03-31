@@ -10,8 +10,17 @@ import Image from "@material-ui/icons/Image"
 import CheckBox from "@material-ui/icons/CheckBox"
 import LocalOffer from "@material-ui/icons/LocalOffer"
 import AccessTime from "@material-ui/icons/AccessTime"
+import { makeStyles } from "@material-ui/styles"
+
+const useStyles = makeStyles({
+  icony: {
+    fontSize: 14,
+    fontWeight: "bold"
+  }
+})
 
 export const TypeIcon = props => {
+  const c = useStyles()
   const { type, multiple } = props
   switch (type) {
     case "text": {
@@ -34,11 +43,29 @@ export const TypeIcon = props => {
     }
     case "numeric": {
       return (
-        <div
-          {...props}
-          style={{ ...props.style, fontSize: 14, fontWeight: "bold" }}
-        >
+        <div {...props} className={c.icony}>
           #
+        </div>
+      )
+    }
+    case "markdown": {
+      return (
+        <div {...props} className={c.icony}>
+          M
+        </div>
+      )
+    }
+    case "json": {
+      return (
+        <div {...props} className={c.icony}>
+          JS
+        </div>
+      )
+    }
+    case "json-array": {
+      return (
+        <div {...props} className={c.icony}>
+          [...]
         </div>
       )
     }
