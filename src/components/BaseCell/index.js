@@ -51,8 +51,8 @@ export const BaseCell = ({
         ...(selected
           ? {
               border: selected ? "2px solid " + blue[400] : undefined,
-              width: width - 4,
-              height: height - 4
+              width: width - 1,
+              height: height
             }
           : {
               width: first ? width : width - 1,
