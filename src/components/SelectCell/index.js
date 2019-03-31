@@ -47,11 +47,16 @@ const customStyles = {
     ...provided,
     color: "rgba(0,0,0,0.8)",
     backgroundColor: softenColor(state.data.color)
+  }),
+  menuPortal: (provided, state) => ({
+    ...provided,
+    zIndex: 99999
   })
 }
 
 export const SelectCell = props => {
   const c = useStyles()
+  if (!props.options) throw new Error("Missing Options for SelectCell")
   const optionMap = useMemo(() => {
     const om = {}
     for (let option of props.options) {
@@ -62,13 +67,28 @@ export const SelectCell = props => {
     }
     return om
   }, props.options)
+  const values =
+    props.value === undefined
+      ? []
+      : typeof props.value === "string"
+        ? [props.value]
+        : props.value || []
+
+  const invalidValue = values.find(v => !optionMap[v])
+  if (invalidValue)
+    throw new Error(
+      `Value "${invalidValue}" not found in options. Options are: "${JSON.stringify(
+        props.options
+      )}"`
+    )
+
   return (
     <BaseCell
       {...props}
       readContent={
         props.multiple ? (
           <div className={c.tagContainer}>
-            {(props.value || []).map((t, i) => (
+            {values.map((t, i) => (
               <div
                 key={i}
                 className={c.tag}
@@ -82,16 +102,19 @@ export const SelectCell = props => {
           <div
             className={c.tag}
             style={{
-              backgroundColor: optionMap[props.value].color
+              backgroundColor: props.value
+                ? optionMap[props.value].color
+                : "#fff"
             }}
           >
-            {optionMap[props.value].label}
+            {props.value ? optionMap[props.value].label : ""}
           </div>
         )
       }
       editContent={
         <div style={{ width: "100%", position: "relative" }}>
           <Select
+            menuPortalTarget={document.body}
             components={{ ClearIndicator: null }}
             styles={customStyles}
             autoFocus
@@ -111,8 +134,12 @@ export const SelectCell = props => {
                   }))
                 : {
                     value: props.value,
-                    label: optionMap[props.value].label,
-                    color: optionMap[props.value].color
+                    label: props.value
+                      ? optionMap[props.value].label
+                      : undefined,
+                    color: props.value
+                      ? optionMap[props.value].color
+                      : undefined
                   }
             }
             isMulti={props.multiple}

@@ -17,24 +17,27 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     padding: 10,
-    borderBottom: "1px solid " + grey[400]
+    borderBottom: "1px solid " + grey[400],
+    minHeight: 40
   },
   tableName: { marginRight: 16, fontWeight: "bold", color: grey[900] }
 })
 
-export const TableHeader = ({ tableName }) => {
+export const TableHeader = ({ tableName, onSave }) => {
   const c = useStyles()
 
   return (
     <div className={c.root}>
       <div className={c.tableName}>{tableName}</div>
-      <ConfigureHiddenFieldsButton />
-      <ConfigureFiltersButton />
-      <ConfigureSortingButton />
-      <ConfigureRowHeightButton />
-      <ConfigureButtonBase Icon={SaveIcon} text="Save" />
+      {/* <ConfigureHiddenFieldsButton /> */}
+      {/* <ConfigureFiltersButton /> */}
+      {/* <ConfigureSortingButton /> */}
+      {/* <ConfigureRowHeightButton /> */}
+      {onSave && (
+        <ConfigureButtonBase onClick={onSave} Icon={SaveIcon} text="Save" />
+      )}
       <div style={{ flexGrow: 1 }} />
-      <SearchButton />
+      {/* <SearchButton /> */}
     </div>
   )
 }

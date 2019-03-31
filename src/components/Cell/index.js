@@ -8,6 +8,8 @@ import FileCell from "../FileCell"
 import ImageCell from "../ImageCell"
 import NumericCell from "../NumericCell"
 import BooleanCell from "../BooleanCell"
+import JSONCell from "../JSONCell"
+import JSONArrayCell from "../JSONArrayCell"
 
 export const Cell = (props: ColumnSchema) => {
   switch (props.type) {
@@ -28,6 +30,12 @@ export const Cell = (props: ColumnSchema) => {
     }
     case "numeric": {
       return <NumericCell {...props} />
+    }
+    case "json": {
+      return <JSONCell {...props} />
+    }
+    case "json-array": {
+      return <JSONArrayCell {...props} />
     }
   }
   throw new Error(

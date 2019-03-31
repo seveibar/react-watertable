@@ -14,6 +14,8 @@ export const BaseCell = ({
   editable = true,
   first,
   last,
+  grow,
+  centered,
   bold,
   backgroundColor,
   editContent,
@@ -44,6 +46,8 @@ export const BaseCell = ({
         display: "flex",
         fontWeight: bold ? "bold" : undefined,
         backgroundColor: selected ? blue[50] : backgroundColor,
+        justifyContent: centered ? "center" : "flex-start",
+        flexGrow: grow ? 1 : undefined,
         ...(selected
           ? {
               border: selected ? "2px solid " + blue[400] : undefined,

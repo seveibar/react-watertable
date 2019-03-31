@@ -37,6 +37,20 @@ export type NumericColumn = {|
   type: "numeric"
 |}
 
+export type JSONColumn = {|
+  ...BaseColumn,
+  type: "json",
+  multiple?: false,
+  schema?: ColumnSchema
+|}
+
+export type JSONArrayColumn = {|
+  ...BaseColumn,
+  type: "json-array",
+  multiple?: false,
+  schema?: ColumnSchema
+|}
+
 export type ColumnSchema =
   | TextColumn
   | SelectColumn
@@ -44,6 +58,8 @@ export type ColumnSchema =
   | ImageColumn
   | BooleanColumn
   | NumericColumn
+  | JSONColumn
+  | JSONArrayColumn
 
 export type TableSchema = {
   [columnId: string]: ColumnSchema
