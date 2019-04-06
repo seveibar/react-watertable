@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { makeStyles } from "@material-ui/styles"
 import { useTheme } from "../Theme"
 import { grey, blue } from "@material-ui/core/colors"
@@ -20,6 +20,7 @@ export const BaseCell = ({
   backgroundColor,
   editContent,
   readContent,
+  onClear,
   children
 }) => {
   const c = useStyles()
@@ -28,6 +29,24 @@ export const BaseCell = ({
   if (editable) {
     ;[selected, onSelect] = useSelectedCell()
   }
+
+  useEffect(
+    () => {
+      if (!window) return () => {}
+      if (!selected) return () => {}
+      const listener = e => {
+        if (e.key === "Delete") {
+          onClear()
+        }
+      }
+
+      window.addEventListener("keydown", listener)
+      return () => {
+        window.removeEventListener("keydown", listener)
+      }
+    },
+    [selected]
+  )
 
   return (
     <div

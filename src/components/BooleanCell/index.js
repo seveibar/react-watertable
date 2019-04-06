@@ -7,7 +7,7 @@ import Checkbox from "@material-ui/core/Checkbox"
 
 export const BooleanCell = props => {
   return (
-    <BaseCell {...props} centered>
+    <BaseCell {...props} onClear={() => props.onChange(false)} centered>
       <Checkbox
         onChange={(e, checked) => props.onChange(checked)}
         checked={Boolean(props.value)}

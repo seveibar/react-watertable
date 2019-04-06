@@ -85,6 +85,10 @@ export const SelectCell = props => {
   return (
     <BaseCell
       {...props}
+      onClear={() => {
+        if (props.multiple) return props.onChange([])
+        return props.onChange(undefined)
+      }}
       readContent={
         props.multiple ? (
           <div className={c.tagContainer}>
@@ -125,7 +129,7 @@ export const SelectCell = props => {
                 props.onChange(v.value)
               }
             }}
-            defaultValue={
+            value={
               props.multiple
                 ? (props.value || []).map(v => ({
                     value: v,

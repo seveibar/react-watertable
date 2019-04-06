@@ -45,6 +45,9 @@ export const FileCell = props => {
   return (
     <BaseCell
       {...props}
+      onClear={() => {
+        props.onChange(undefined)
+      }}
       readContent={props.value && <FileDisplay url={props.value} />}
       editContent={
         <div style={{ display: "flex" }}>

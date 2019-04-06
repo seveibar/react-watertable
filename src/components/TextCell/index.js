@@ -8,13 +8,14 @@ export const TextCell = props => {
   return (
     <BaseCell
       {...props}
+      onClear={e => e.key === "Delete" && props.onChange("")}
       readContent={props.value}
       editContent={
         <div>
           <InputBase
             onChange={e => props.onChange(e.target.value)}
             autoFocus
-            defaultValue={props.value}
+            value={props.value}
           />
         </div>
       }

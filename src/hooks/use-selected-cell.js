@@ -59,7 +59,8 @@ export const useSelectedCell = () => {
       selectedCellId === myId,
       () => {
         changeSelectedCellId(myId)
-      }
+      },
+      useUnselectCell
     ],
     [selectedCellId === myId]
   )

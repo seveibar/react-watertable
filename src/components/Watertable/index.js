@@ -51,6 +51,7 @@ export type Props = {
   data: Array<Object>,
   onChangeData: (Array<Object>) => any,
   onUpdateCell: (key: string, col: string, val: any) => any,
+  onDeleteRow?: any,
   onSave?: Function
 }
 
@@ -61,7 +62,7 @@ export const Watertable = ({
   tableName,
   onUpdateCell,
   onChangeData,
-  onDeleteCell: onDeleteCellProp,
+  onDeleteRow: onDeleteRowProp,
   onSave
 }: Props) => {
   const c = useStyles()
@@ -88,13 +89,13 @@ export const Watertable = ({
   const primaryCol = columns.find(col => col.primary)
   const primaryKey = primaryCol ? primaryCol.id : undefined
 
-  const onDeleteCell = (key: string | number) => {
-    const cellToDelete = data.find((row, i) => {
+  const onDeleteRow = (key: string | number) => {
+    const rowToDelete = data.find((row, i) => {
       return primaryKey ? row[primaryKey] === key : i === key
     })
-    if (onDeleteCellProp) return onDeleteCellProp(cellToDelete)
+    if (onDeleteRowProp) return onDeleteRowProp(rowToDelete)
     const newData = [...data]
-    newData.splice(data.indexOf(cellToDelete), 1)
+    newData.splice(data.indexOf(rowToDelete), 1)
     changeData(newData)
     if (onChangeData) onChangeData(newData)
   }
@@ -152,7 +153,7 @@ export const Watertable = ({
             {data.concat([{}]).map((row, i) => (
               <Row
                 key={i}
-                onDelete={() => onDeleteCell(primaryKey ? row[primaryKey] : i)}
+                onDelete={() => onDeleteRow(primaryKey ? row[primaryKey] : i)}
               >
                 <Cell
                   first
