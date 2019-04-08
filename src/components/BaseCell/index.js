@@ -35,8 +35,8 @@ export const BaseCell = ({
       if (!window) return () => {}
       if (!selected) return () => {}
       const listener = e => {
-        if (e.key === "Delete") {
-          onClear()
+        if (e.key === "Delete" || e.key === "Backspace") {
+          onClear(e)
         }
       }
 
