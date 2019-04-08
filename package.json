@@ -1,7 +1,6 @@
 {
   "name": "react-watertable",
   "version": "0.1.0",
-  "private": true,
   "main": "./dist/components/Watertable",
   "dependencies": {
     "react": "^16.8.5",
