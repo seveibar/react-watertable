@@ -11,11 +11,15 @@ import DialogActions from "@material-ui/core/DialogActions"
 import Waterobject from "../Waterobject"
 import { makeStyles } from "@material-ui/styles"
 import { grey } from "@material-ui/core/colors"
+import IconButton from "@material-ui/core/IconButton"
+import EditIcon from "@material-ui/icons/Edit"
 
 const useStyles = makeStyles({
   soft: {
     color: grey[600]
-  }
+  },
+  button: { marginLeft: 10 },
+  icon: { width: 16, height: 16, opacity: 0.5 }
 })
 
 export const JSONCell = props => {
@@ -26,7 +30,9 @@ export const JSONCell = props => {
       <div className={c.soft}>
         ({Object.keys(props.value || {}).length} Properties)
       </div>
-      <Button onClick={() => changeEditing(true)}>Edit</Button>
+      <IconButton className={c.button} onClick={() => changeEditing(true)}>
+        <EditIcon className={c.icon} />
+      </IconButton>
       {editing && (
         <Dialog open onClose={() => changeEditing(false)}>
           <div style={{ minWidth: 500 }}>

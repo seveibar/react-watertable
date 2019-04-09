@@ -59,3 +59,8 @@ const MyApp = () => (
 | getOptions            | `(columnName: string, input: string) => Promise<Array<Option>>` | (optional) Columns without static options will call this method on user input.                                                               |
 | onChangeDisplayConfig | `(DisplayConfig) => any`                                        | (optional) Called whenever the view changes e.g. column width changes, filter applied. If not specified, all display configuration disabled. |
 | onChangeSchema        | `(TableSchema) => any`                                          | (optional) Called when schema is modified. If not specified, schema changes are disabled.                                                    |
+| onUpdateCell          |                                                                 |                                                                                                                                              |
+| onDeleteRow           |                                                                 |                                                                                                                                              |
+| canAddMore            |                                                                 |                                                                                                                                              |
+| canDelete             |                                                                 |
+| recordActions         |                                                                 |

@@ -9,6 +9,7 @@ export const BooleanCell = props => {
   return (
     <BaseCell {...props} onClear={() => props.onChange(false)} centered>
       <Checkbox
+        disabled={props.editable === false}
         onChange={(e, checked) => props.onChange(checked)}
         checked={Boolean(props.value)}
       />

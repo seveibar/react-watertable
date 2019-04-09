@@ -53,6 +53,7 @@ export type Props = {
   onUpdateCell: (key: string, col: string, val: any) => any,
   onDeleteRow?: any,
   canAddMore?: boolean,
+  recordActions?: Array<string>,
   onSave?: Function
 }
 
@@ -64,7 +65,10 @@ export const Watertable = ({
   onUpdateCell,
   onChangeData,
   canAddMore = true,
+  canDelete = true,
   onDeleteRow: onDeleteRowProp,
+  recordActions = [],
+  onClickRecordAction,
   onSave
 }: Props) => {
   const c = useStyles()
@@ -155,6 +159,8 @@ export const Watertable = ({
             {(canAddMore ? data.concat([{}]) : data).map((row, i) => (
               <Row
                 key={i}
+                onClickAction={action => onClickRecordAction(row, action)}
+                actions={recordActions}
                 onDelete={() => onDeleteRow(primaryKey ? row[primaryKey] : i)}
               >
                 <Cell
