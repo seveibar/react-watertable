@@ -10,7 +10,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "NODE_ENV=production babel ./src --ignore \"src/**/*.story.js\" --out-dir=./dist && cp package.json dist/",
-    "dist": "cd dist && npm publish",
+    "dist": "npm run build && cd dist && npm publish",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",

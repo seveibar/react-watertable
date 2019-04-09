@@ -52,6 +52,7 @@ export type Props = {
   onChangeData: (Array<Object>) => any,
   onUpdateCell: (key: string, col: string, val: any) => any,
   onDeleteRow?: any,
+  canAddMore?: boolean,
   onSave?: Function
 }
 
@@ -62,6 +63,7 @@ export const Watertable = ({
   tableName,
   onUpdateCell,
   onChangeData,
+  canAddMore = true,
   onDeleteRow: onDeleteRowProp,
   onSave
 }: Props) => {
@@ -150,7 +152,7 @@ export const Watertable = ({
             />
           </Row>
           <SelectedCellProvider>
-            {data.concat([{}]).map((row, i) => (
+            {(canAddMore ? data.concat([{}]) : data).map((row, i) => (
               <Row
                 key={i}
                 onDelete={() => onDeleteRow(primaryKey ? row[primaryKey] : i)}
