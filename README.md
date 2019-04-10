@@ -64,3 +64,4 @@ const MyApp = () => (
 | canAddMore            |                                                                 |                                                                                                                                              |
 | canDelete             |                                                                 |
 | recordActions         |                                                                 |
+| onClickRecordAction   |                                                                 |

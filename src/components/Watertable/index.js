@@ -52,8 +52,10 @@ export type Props = {
   onChangeData: (Array<Object>) => any,
   onUpdateCell: (key: string, col: string, val: any) => any,
   onDeleteRow?: any,
+  canDelete?: boolean,
   canAddMore?: boolean,
   recordActions?: Array<string>,
+  onClickRecordAction?: string => any,
   onSave?: Function
 }
 
