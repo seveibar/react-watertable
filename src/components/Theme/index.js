@@ -1,4 +1,6 @@
 // @flow
+/* eslint-disable */
+
 import { install, makeStyles } from "@material-ui/styles"
 install()
 
