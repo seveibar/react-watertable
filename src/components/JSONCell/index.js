@@ -41,6 +41,7 @@ export const JSONCell = props => {
               onChange={(key, val) => {
                 props.onChange({ ...(props.value || {}), [key]: val })
               }}
+              downloadable={props.downloadable}
               schema={props.schema}
               data={props.value}
             />

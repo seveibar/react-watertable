@@ -44,6 +44,7 @@ export const JSONArrayCell = props => {
         <Dialog open onClose={() => changeEditing(false)}>
           <div style={{ minWidth: 500 }}>
             <Watertable
+              downloadable={props.downloadable}
               tableName={props.title}
               onChangeData={data => props.onChange(data)}
               schema={props.schema}

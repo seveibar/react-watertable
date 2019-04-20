@@ -35,6 +35,7 @@ storiesOf("Watertable", module)
   .add("All Cell Types", () => (
     <Watertable
       tableName="All Cell Types"
+      downloadable
       schema={{
         name: {
           title: "Name",

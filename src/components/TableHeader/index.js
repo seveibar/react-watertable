@@ -11,6 +11,7 @@ import { ConfigureRowHeightButton } from "../ConfigureRowHeight"
 import { SearchButton } from "../SearchBar"
 import { grey } from "@material-ui/core/colors"
 import SaveIcon from "@material-ui/icons/Save"
+import DownloadIcon from "@material-ui/icons/CloudDownload"
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   tableName: { marginRight: 16, fontWeight: "bold", color: grey[900] }
 })
 
-export const TableHeader = ({ tableName, onSave }) => {
+export const TableHeader = ({ tableName, onSave, onDownload }) => {
   const c = useStyles()
 
   return (
@@ -35,6 +36,13 @@ export const TableHeader = ({ tableName, onSave }) => {
       {/* <ConfigureRowHeightButton /> */}
       {onSave && (
         <ConfigureButtonBase onClick={onSave} Icon={SaveIcon} text="Save" />
+      )}
+      {onDownload && (
+        <ConfigureButtonBase
+          onClick={onDownload}
+          Icon={DownloadIcon}
+          text="Download"
+        />
       )}
       <div style={{ flexGrow: 1 }} />
       {/* <SearchButton /> */}

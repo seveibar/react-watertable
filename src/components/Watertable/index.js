@@ -13,6 +13,7 @@ import { grey } from "@material-ui/core/colors"
 import { SelectedCellProvider } from "../../hooks/use-selected-cell"
 import Button from "@material-ui/core/Button"
 import Row from "./Row"
+import { saveAs } from "file-saver"
 
 const useStyles = makeStyles({
   root: {
@@ -64,6 +65,7 @@ export const Watertable = ({
   data: inputData,
   displayConfig,
   tableName,
+  downloadable,
   onUpdateCell,
   onChangeData,
   canAddMore = true,
@@ -160,7 +162,16 @@ export const Watertable = ({
 
   return (
     <div className={c.root}>
-      <TableHeader tableName={tableName} onSave={onSave} />
+      <TableHeader
+        tableName={tableName}
+        onSave={onSave}
+        onDownload={
+          downloadable
+            ? () =>
+                saveAs(new Blob([JSON.stringify(data)]), `${tableName}.json`)
+            : undefined
+        }
+      />
       <div className={c.contentContainer}>
         <div
           className={c.content}

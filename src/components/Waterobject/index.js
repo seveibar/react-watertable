@@ -9,6 +9,7 @@ import Cell from "../Cell"
 import { useTheme } from "../Theme"
 import { grey } from "@material-ui/core/colors"
 import { SelectedCellProvider } from "../../hooks/use-selected-cell"
+import { saveAs } from "file-saver"
 
 const useStyles = makeStyles({
   root: {
@@ -52,6 +53,7 @@ export const Waterobject = ({
   data: inputData,
   displayConfig,
   tableName,
+  downloadable,
   onChange,
   onSave
 }) => {
@@ -106,7 +108,16 @@ export const Waterobject = ({
 
   return (
     <div className={c.root}>
-      <TableHeader tableName={tableName} onSave={onSave} />
+      <TableHeader
+        tableName={tableName}
+        onSave={onSave}
+        onDownload={
+          downloadable
+            ? () =>
+                saveAs(new Blob([JSON.stringify(data)]), `${tableName}.json`)
+            : undefined
+        }
+      />
       <div className={c.contentContainer}>
         <div className={c.content}>
           <Row>

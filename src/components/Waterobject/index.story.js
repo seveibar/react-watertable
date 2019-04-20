@@ -10,6 +10,7 @@ import Waterobject from "./"
 storiesOf("Waterobject", module)
   .add("Basic", () => (
     <Waterobject
+      downloadable
       onChange={action("onChange")}
       tableName="Water Object"
       schema={{
@@ -50,6 +51,7 @@ storiesOf("Waterobject", module)
   ))
   .add("Freeform/Schemaless", () => (
     <Waterobject
+      downloadable
       onChange={action("onChange")}
       tableName="Water Object"
       data={{

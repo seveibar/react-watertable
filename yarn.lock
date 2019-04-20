@@ -2400,7 +2400,7 @@ babel-plugin-minify-constant-folding@^0.5.0:
     babel-helper-evaluate-path "^0.5.0"
 
 babel-plugin-minify-dead-code-elimination@^0.6.0-alpha.5+245949f:
-  version "0.6.0-alpha.5+245949f"
+  version "0.6.0-alpha.5"
   resolved "https://registry.yarnpkg.com/babel-plugin-minify-dead-code-elimination/-/babel-plugin-minify-dead-code-elimination-0.6.0-alpha.5.tgz#4d5c33616af8cdd8e4be6c94d5462cee0597f095"
   dependencies:
     babel-helper-evaluate-path "^0.5.0"
@@ -2539,7 +2539,7 @@ babel-preset-jest@^23.2.0:
     babel-plugin-syntax-object-rest-spread "^6.13.0"
 
 "babel-preset-minify@^0.5.0 || 0.6.0-alpha.5":
-  version "0.6.0-alpha.5+245949f"
+  version "0.6.0-alpha.5"
   resolved "https://registry.yarnpkg.com/babel-preset-minify/-/babel-preset-minify-0.6.0-alpha.5.tgz#e6c79d5155cc92ad59149c1a7799c0260c8db1f8"
   dependencies:
     babel-plugin-minify-builtins "^0.5.0"
@@ -4727,6 +4727,11 @@ file-loader@^3.0.1:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^1.0.0"
+
+file-saver@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.1.tgz#7fe2242af1cbc559a29d8176078a8b56d781fa79"
+  integrity sha512-dCB3K7/BvAcUmtmh1DzFdv0eXSVJ9IAFt1mw3XZfAexodNRoE29l3xB2EX4wH2q8m/UTzwzEPq/ArYk98kUkBQ==
 
 file-selector@^0.1.11:
   version "0.1.11"

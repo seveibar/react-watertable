@@ -3,6 +3,7 @@
   "version": "0.1.4",
   "main": "./components/Watertable",
   "dependencies": {
+    "file-saver": "^2.0.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-scripts": "2.1.8"
