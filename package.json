@@ -1,6 +1,6 @@
 {
   "name": "react-watertable",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "./components/Watertable",
   "dependencies": {
     "file-saver": "^2.0.1",
