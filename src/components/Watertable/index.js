@@ -164,7 +164,7 @@ export const Watertable = ({
     <div className={c.root}>
       <TableHeader
         tableName={tableName}
-        onSave={onSave}
+        onSave={onSave ? () => onSave(data) : undefined}
         onDownload={
           downloadable
             ? () =>
