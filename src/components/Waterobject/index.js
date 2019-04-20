@@ -10,6 +10,8 @@ import { useTheme } from "../Theme"
 import { grey } from "@material-ui/core/colors"
 import { SelectedCellProvider } from "../../hooks/use-selected-cell"
 import { saveAs } from "file-saver"
+import isEqual from "lodash/isEqual"
+import RawJSONEditor from "../RawJSONEditor"
 
 const useStyles = makeStyles({
   root: {
@@ -54,11 +56,13 @@ export const Waterobject = ({
   displayConfig,
   tableName,
   downloadable,
+  rawEdit,
   onChange,
   onSave
 }) => {
   const c = useStyles()
   const theme = useTheme()
+  const [rawEditing, changeRawEditing] = useState(Boolean(rawEdit))
   const controlled = Boolean(onChange)
   let data, changeData
 
@@ -117,43 +121,65 @@ export const Waterobject = ({
                 saveAs(new Blob([JSON.stringify(data)]), `${tableName}.json`)
             : undefined
         }
+        onToggleRawEdit={() => changeRawEditing(!rawEditing)}
       />
       <div className={c.contentContainer}>
-        <div className={c.content}>
-          <Row>
-            <ColumnHeaderCell
-              width={keyColWidth}
-              title="Key"
-              type="text"
-              first
-              height={50}
+        {!rawEditing ? (
+          <div className={c.content}>
+            <Row>
+              <ColumnHeaderCell
+                width={keyColWidth}
+                title="Key"
+                type="text"
+                first
+                height={50}
+              />
+              <ColumnHeaderCell
+                grow
+                title="Value"
+                type="any"
+                last
+                height={50}
+              />
+            </Row>
+            <SelectedCellProvider>
+              {keys.map((key, i) => (
+                <Row key={i}>
+                  <Cell
+                    type="text"
+                    width={keyColWidth}
+                    height={50}
+                    editable={false}
+                    onChange={newValue => onCellChange(key, newValue)}
+                    first
+                    value={schema[key].title}
+                  />
+                  <Cell
+                    {...schema[key]}
+                    grow
+                    onChange={newValue => onCellChange(key, newValue)}
+                    height={50}
+                    last
+                    value={data[key]}
+                  />
+                </Row>
+              ))}
+            </SelectedCellProvider>
+          </div>
+        ) : (
+          <div className={c.content}>
+            <RawJSONEditor
+              initialValue={data}
+              onChange={newData => {
+                for (const key of Object.keys(newData)) {
+                  if (!isEqual(newData[key], data[key])) {
+                    onChange(key, newData[key])
+                  }
+                }
+              }}
             />
-            <ColumnHeaderCell grow title="Value" type="any" last height={50} />
-          </Row>
-          <SelectedCellProvider>
-            {keys.map((key, i) => (
-              <Row key={i}>
-                <Cell
-                  type="text"
-                  width={keyColWidth}
-                  height={50}
-                  editable={false}
-                  onChange={newValue => onCellChange(key, newValue)}
-                  first
-                  value={schema[key].title}
-                />
-                <Cell
-                  {...schema[key]}
-                  grow
-                  onChange={newValue => onCellChange(key, newValue)}
-                  height={50}
-                  last
-                  value={data[key]}
-                />
-              </Row>
-            ))}
-          </SelectedCellProvider>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   )
