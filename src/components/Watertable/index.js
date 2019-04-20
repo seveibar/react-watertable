@@ -84,6 +84,32 @@ export const Watertable = ({
     ;[data, changeData] = useState(inputData)
   }
 
+  if (!schema)
+    schema = useMemo(() => {
+      const obj = {}
+      for (const row of data) {
+        for (const [k, v] of Object.entries(row)) {
+          if (!obj[k]) {
+            if (typeof v === "string" || typeof v === "number") {
+              obj[k] = { type: "text", title: k }
+            } else if (typeof v === "boolean") {
+              obj[k] = { type: "boolean", title: k }
+            } else if (
+              Array.isArray(v) &&
+              (typeof v[0] === "string" || typeof v[0] === "number")
+            ) {
+              obj[k] = { type: "text", multiple: true, title: k }
+            } else if (Array.isArray(v) && typeof v[0] === "object") {
+              obj[k] = { type: "json-array", title: k }
+            } else if (typeof v === "object") {
+              obj[k] = { type: "json", title: k }
+            }
+          }
+        }
+      }
+      return obj
+    }, data)
+
   const rowHeight = 50
 
   // TODO columns should be memoized and ordered according to displayConfig

@@ -3,8 +3,19 @@
 import React from "react"
 import BaseCell from "../BaseCell"
 import InputBase from "@material-ui/core/InputBase"
+import JSONArrayCell from "../JSONArrayCell"
 
 export const TextCell = props => {
+  if (props.multiple) {
+    return (
+      <JSONArrayCell
+        {...props}
+        onChange={ar => props.onChange(ar.map(a => a.text))}
+        value={(props.value || []).map(s => ({ text: s }))}
+      />
+    )
+  }
+
   return (
     <BaseCell
       {...props}

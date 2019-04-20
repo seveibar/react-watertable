@@ -25,12 +25,15 @@ const useStyles = makeStyles({
 export const JSONArrayCell = props => {
   const c = useStyles()
   const [editing, changeEditing] = useState(false)
-  const columns = Object.entries(props.schema).map(([id, def]) => ({
-    id,
-    ...def
-  }))
-  const primaryCol = columns.find(col => col.primary)
-  const primaryKey = primaryCol ? primaryCol.id : undefined
+  let primaryKey
+  if (props.schema) {
+    const columns = Object.entries(props.schema).map(([id, def]) => ({
+      id,
+      ...def
+    }))
+    const primaryCol = columns.find(col => col.primary)
+    primaryKey = primaryCol ? primaryCol.id : undefined
+  }
   return (
     <BaseCell {...props} centered>
       <div className={c.soft}>({(props.value || []).length} Items)</div>
