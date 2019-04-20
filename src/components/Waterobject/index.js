@@ -171,7 +171,10 @@ export const Waterobject = ({
             <RawJSONEditor
               initialValue={data}
               onChange={newData => {
-                for (const key of Object.keys(newData)) {
+                const allKeys = new Set(
+                  Object.keys(newData).concat(Object.keys(data))
+                )
+                for (const key of allKeys) {
                   if (!isEqual(newData[key], data[key])) {
                     onChange(key, newData[key])
                   }
