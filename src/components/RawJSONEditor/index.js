@@ -12,6 +12,11 @@ export const RawJSONEditor = ({ initialValue, onChange }) => {
     <Editor
       value={initialValue}
       onChangeJSON={onChange}
+      onChangeText={t => {
+        try {
+          onChange(JSON.parse(t))
+        } catch (e) {}
+      }}
       ace={ace}
       allowedModes={["tree", "code"]}
       theme="ace/theme/github"
