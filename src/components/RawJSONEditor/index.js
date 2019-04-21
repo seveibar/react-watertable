@@ -18,7 +18,8 @@ export const RawJSONEditor = ({ initialValue, onChange }) => {
         } catch (e) {}
       }}
       ace={ace}
-      allowedModes={["tree", "code"]}
+      mode="code"
+      allowedModes={["code", "tree"]}
       theme="ace/theme/github"
     />
   )
