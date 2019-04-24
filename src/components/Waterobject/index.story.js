@@ -62,3 +62,15 @@ storiesOf("Waterobject", module)
       }}
     />
   ))
+  .add("Freeform/Schemaless (Uncontrolled)", () => (
+    <Waterobject
+      downloadable
+      tableName="Water Object"
+      data={{
+        text: "This is some text",
+        checkbox: true,
+        selection: "red",
+        multipleSelection: ["red", "blue"]
+      }}
+    />
+  ))

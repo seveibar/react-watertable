@@ -73,28 +73,31 @@ export const Waterobject = ({
   }
 
   if (!schema)
-    schema = useMemo(() => {
-      const obj = {}
-      for (const [k, v] of Object.entries(data || {})) {
-        if (!obj[k]) {
-          if (typeof v === "string" || typeof v === "number") {
-            obj[k] = { type: "text", title: k }
-          } else if (typeof v === "boolean") {
-            obj[k] = { type: "boolean", title: k }
-          } else if (
-            Array.isArray(v) &&
-            (typeof v[0] === "string" || typeof v[0] === "number")
-          ) {
-            obj[k] = { type: "text", multiple: true, title: k }
-          } else if (Array.isArray(v) && typeof v[0] === "object") {
-            obj[k] = { type: "json-array", title: k }
-          } else if (typeof v === "object") {
-            obj[k] = { type: "json", title: k }
+    schema = useMemo(
+      () => {
+        const obj = {}
+        for (const [k, v] of Object.entries(data || {})) {
+          if (!obj[k]) {
+            if (typeof v === "string" || typeof v === "number") {
+              obj[k] = { type: "text", title: k }
+            } else if (typeof v === "boolean") {
+              obj[k] = { type: "boolean", title: k }
+            } else if (
+              Array.isArray(v) &&
+              (typeof v[0] === "string" || typeof v[0] === "number")
+            ) {
+              obj[k] = { type: "text", multiple: true, title: k }
+            } else if (Array.isArray(v) && typeof v[0] === "object") {
+              obj[k] = { type: "json-array", title: k }
+            } else if (typeof v === "object") {
+              obj[k] = { type: "json", title: k }
+            }
           }
         }
-      }
-      return obj
-    }, data)
+        return obj
+      },
+      [data]
+    )
 
   const keys = Object.keys(schema)
   keys.sort()
@@ -109,6 +112,15 @@ export const Waterobject = ({
       [key]: value
     })
   }
+
+  // const onObjectChange = (newObj: Object) => {
+  //   for (const k of new Set(Object.keys(newObj).concat(Object.keys(data)))) {
+  //     if (!isEqual(newObj[k], data[k])) {
+  //       if (onChange) onChange(k, newObj[k])
+  //     }
+  //   }
+  //   changeData(newObj)
+  // }
 
   return (
     <div className={c.root}>
@@ -176,9 +188,10 @@ export const Waterobject = ({
                 )
                 for (const key of allKeys) {
                   if (!isEqual(newData[key], data[key])) {
-                    onChange(key, newData[key])
+                    if (onChange) onChange(key, newData[key])
                   }
                 }
+                changeData(newData)
               }}
             />
           </div>
