@@ -200,6 +200,7 @@ export const Watertable = ({
                 key={i}
                 onClickAction={action => onClickRecordAction(row, action)}
                 actions={recordActions}
+                canDelete={canDelete}
                 onDelete={() => onDeleteRow(primaryKey ? row[primaryKey] : i)}
               >
                 <Cell

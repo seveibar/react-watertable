@@ -32,7 +32,14 @@ const useStyles = makeStyles({
   }
 })
 
-export const Row = ({ children, noMenu, onDelete, actions, onClickAction }) => {
+export const Row = ({
+  children,
+  noMenu,
+  canDelete,
+  onDelete,
+  actions,
+  onClickAction
+}) => {
   const c = useStyles()
   const contextMenuId = useMemo(
     () => `contextmenu_${Math.random().toString()}`,
@@ -51,9 +58,11 @@ export const Row = ({ children, noMenu, onDelete, actions, onClickAction }) => {
       </ContextMenuTrigger>
       <ContextMenu id={contextMenuId}>
         <div className={c.menuContainer}>
-          <MenuItem onClick={onDelete} className={c.menuItem}>
-            Delete Record
-          </MenuItem>
+          {canDelete && (
+            <MenuItem onClick={onDelete} className={c.menuItem}>
+              Delete Record
+            </MenuItem>
+          )}
           {actions.map(r => (
             <MenuItem
               onClick={() => {

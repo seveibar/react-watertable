@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/styles"
 import { grey } from "@material-ui/core/colors"
 import IconButton from "@material-ui/core/IconButton"
 import EditIcon from "@material-ui/icons/Edit"
+import JSONArrayCell from "../JSONArrayCell"
 
 const useStyles = makeStyles({
   soft: {
@@ -23,6 +24,9 @@ const useStyles = makeStyles({
 })
 
 export const JSONCell = props => {
+  if (!props.schema && Array.isArray(props.value)) {
+    return <JSONArrayCell {...props} />
+  }
   const c = useStyles()
   const [editing, changeEditing] = useState(false)
   return (

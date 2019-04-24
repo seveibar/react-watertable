@@ -87,6 +87,11 @@ storiesOf("Watertable", module)
             done: { title: "Done", type: "boolean" }
           }
         },
+        todoListJSON: {
+          title: "TODO List (Schemaless)",
+          type: "json",
+          editable: false
+        },
         someFile: {
           title: "Some File",
           type: "file"
@@ -102,7 +107,8 @@ storiesOf("Watertable", module)
           color: "red",
           likesDogs: true,
           allColors: ["blue", "green"],
-          todoList: [{ task: "Rake Leaves", done: true }]
+          todoList: [{ task: "Rake Leaves", done: true }],
+          todoListJSON: [{ task: "Rake Leaves", done: true }]
         },
         { name: "Sarah", color: "blue" }
       ]}
@@ -192,6 +198,7 @@ storiesOf("Watertable", module)
         },
         { name: "Sarah", color: "blue" }
       ]}
+      canDelete={false}
       onChangeData={action("onChangeData")}
     />
   ))
