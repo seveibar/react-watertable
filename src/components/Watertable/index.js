@@ -109,7 +109,7 @@ export const Watertable = ({
           }
         }
       }
-      return obj
+      return (obj: any)
     }, data)
 
   const rowHeight = 50
