@@ -106,7 +106,7 @@ export const Waterobject = ({
   const rowHeight = 50
 
   const onCellChange = (key: string | number, value: any) => {
-    if (onChange) return onChange(key, value)
+    if (onChange) return onChange({ ...data, [key]: value })
     changeData({
       ...data,
       [key]: value
@@ -183,14 +183,7 @@ export const Waterobject = ({
             <RawJSONEditor
               initialValue={data}
               onChange={newData => {
-                const allKeys = new Set(
-                  Object.keys(newData).concat(Object.keys(data))
-                )
-                for (const key of allKeys) {
-                  if (!isEqual(newData[key], data[key])) {
-                    if (onChange) onChange(key, newData[key])
-                  }
-                }
+                onChange(newData)
                 changeData(newData)
               }}
             />

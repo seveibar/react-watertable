@@ -42,8 +42,9 @@ export const JSONCell = props => {
           <div style={{ minWidth: 500 }}>
             <Waterobject
               tableName={props.title}
-              onChange={(key, val) => {
-                props.onChange({ ...(props.value || {}), [key]: val })
+              onChange={newObject => {
+                console.log("changed", newObject)
+                props.onChange(newObject)
               }}
               downloadable={props.downloadable}
               schema={props.schema}

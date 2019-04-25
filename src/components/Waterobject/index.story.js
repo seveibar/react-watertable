@@ -58,7 +58,8 @@ storiesOf("Waterobject", module)
         text: "This is some text",
         checkbox: true,
         selection: "red",
-        multipleSelection: ["red", "blue"]
+        multipleSelection: ["red", "blue"],
+        someObject: {}
       }}
     />
   ))
@@ -70,7 +71,8 @@ storiesOf("Waterobject", module)
         text: "This is some text",
         checkbox: true,
         selection: "red",
-        multipleSelection: ["red", "blue"]
+        multipleSelection: ["red", "blue"],
+        someObject: {}
       }}
     />
   ))
