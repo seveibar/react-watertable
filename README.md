@@ -61,8 +61,8 @@ const MyApp = () => (
 | onChangeSchema        | `(TableSchema) => any`                                          | (optional) Called when schema is modified. If not specified, schema changes are disabled.                                                    |
 | tablename             | `string`                                                        | (optional) Displayed above table data.                                                                                                       |
 | onUpdateCell          |                                                                 |                                                                                                                                              |
-| onDeleteRow           |                                                                 |                                                                                                                                              |
-| canAddMore            |                                                                 |                                                                                                                                              |
-| canDelete             |                                                                 |
-| recordActions         |                                                                 |
-| onClickRecordAction   |                                                                 |
+| onDeleteRow           | `(record: Object) => any`                                                                |                                                                                                                                              |
+| canAddMore            |`boolean`                                                               |                                                                                                                                              |
+| canDelete             | `boolean`                                                                ||
+| recordActions         | `Array<string>`                                                               ||
+| onClickRecordAction   | `(record: Object, action: string) => any`                       |                                                                                                                                              |
