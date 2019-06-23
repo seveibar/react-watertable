@@ -1,6 +1,6 @@
 {
   "name": "react-watertable",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "main": "./components/Watertable",
   "homepage": "https://www.seveibar.com/react-watertable/?path=/story/watertable--readme-example",
   "dependencies": {
