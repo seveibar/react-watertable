@@ -3,6 +3,7 @@
   "version": "0.1.16",
   "main": "./components/Watertable",
   "homepage": "https://www.seveibar.com/react-watertable/?path=/story/watertable--readme-example",
+  "repository": "github:seveibar/react-watertable",
   "dependencies": {
     "@rehooks/window-size": "^1.0.2",
     "brace": "^0.11.1",

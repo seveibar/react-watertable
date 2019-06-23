@@ -1,5 +1,9 @@
 # React Watertable
 
+[![npm version](https://badge.fury.io/js/react-watertable.svg)](https://badge.fury.io/js/react-watertable)
+
+![screenshot](https://user-images.githubusercontent.com/1910070/59980268-80953680-95c1-11e9-84ab-d715c9d1ded2.png)
+
 A table with advanced editable controls. Great for admin panels, customer portals and building in-house tools where something like airtable would be used.
 
 [Check out the demo here](https://www.seveibar.com/react-watertable/?path=/story/watertable--readme-example).
