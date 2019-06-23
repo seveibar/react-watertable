@@ -99,6 +99,10 @@ storiesOf("Watertable", module)
         markdown: {
           title: "Markdown Cells",
           type: "markdown"
+        },
+        dynamic: {
+          title: "Dynamic Cell",
+          type: "dynamic"
         }
       }}
       data={[

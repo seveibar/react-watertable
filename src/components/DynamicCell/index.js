@@ -38,6 +38,8 @@ export default (props: ColumnSchema) => {
     return props.defaultType || "text"
   })
 
+  console.log({ v: props.value })
+
   return (
     <div
       style={{
@@ -46,7 +48,8 @@ export default (props: ColumnSchema) => {
         alignItems: "center",
         flexGrow: 1,
         paddingRight: 34,
-        overflow: "hidden"
+        overflow: "hidden",
+        width: props.width
       }}
     >
       {typesOpen ? (
@@ -57,8 +60,10 @@ export default (props: ColumnSchema) => {
             styles={customStyles}
             autoFocus
             onChange={v => {
-              changeCurrentType(v.value.type)
-              props.onChange(undefined)
+              if (v.value.type !== currentType) {
+                props.onChange(undefined)
+                changeCurrentType(v.value.type)
+              }
               changeTypesOpen(false)
             }}
             defaultMenuIsOpen
