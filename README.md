@@ -2,7 +2,7 @@
 
 A table with advanced editable controls. Great for admin panels, customer portals and building in-house tools where something like airtable would be used.
 
-(insert screenshot here)
+[Check out the demo here](https://www.seveibar.com/react-watertable/?path=/story/watertable--readme-example).
 
 Watertable values simplicity, great user experience and extensive capability.
 

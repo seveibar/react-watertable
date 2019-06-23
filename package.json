@@ -2,17 +2,18 @@
   "name": "react-watertable",
   "version": "0.1.15",
   "main": "./components/Watertable",
+  "homepage": "https://www.seveibar.com/react-watertable/?path=/story/watertable--readme-example",
   "dependencies": {
+    "@rehooks/window-size": "^1.0.2",
     "brace": "^0.11.1",
+    "color-convert": "^2.0.0",
+    "file-saver": "^2.0.1",
     "jsoneditor-react": "^1.0.0",
     "react-contextmenu": "^2.11.0",
-    "file-saver": "^2.0.1",
-    "react-mde": "^7.0.4",
-    "color-convert": "^2.0.0",
     "react-dropzone": "^10.1.0",
+    "react-mde": "^7.0.4",
     "react-select": "^2.4.2",
-    "showdown": "^1.9.0",
-    "@rehooks/window-size": "^1.0.2"
+    "showdown": "^1.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,7 +22,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "gh-pages": "storybook-to-ghpages"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,9 +35,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-scripts": "2.1.8",
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@material-ui/core": "^3.9.2",
@@ -48,6 +47,10 @@
     "@storybook/react": "^5.1.0-alpha.13",
     "babel-loader": "^8.0.5",
     "babel-preset-react-app": "^7.0.2",
-    "flow-bin": "^0.95.1"
+    "flow-bin": "^0.95.1",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-scripts": "2.1.8",
+    "storybook-addon-prettier-source": "^2.1.2"
   }
 }
