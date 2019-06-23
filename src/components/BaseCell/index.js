@@ -30,23 +30,20 @@ export const BaseCell = ({
     ;[selected, onSelect] = useSelectedCell()
   }
 
-  useEffect(
-    () => {
-      if (!window) return () => {}
-      if (!selected) return () => {}
-      const listener = e => {
-        if (e.key === "Delete" || e.key === "Backspace") {
-          onClear(e)
-        }
+  useEffect(() => {
+    if (!window) return () => {}
+    if (!selected) return () => {}
+    const listener = e => {
+      if (e.key === "Delete" || e.key === "Backspace") {
+        onClear(e)
       }
+    }
 
-      window.addEventListener("keydown", listener)
-      return () => {
-        window.removeEventListener("keydown", listener)
-      }
-    },
-    [selected]
-  )
+    window.addEventListener("keydown", listener)
+    return () => {
+      window.removeEventListener("keydown", listener)
+    }
+  }, [selected])
 
   return (
     <div

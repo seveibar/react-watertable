@@ -11,6 +11,7 @@ import BooleanCell from "../BooleanCell"
 import JSONCell from "../JSONCell"
 import JSONArrayCell from "../JSONArrayCell"
 import MarkdownCell from "../MarkdownCell"
+import DynamicCell from "../DynamicCell"
 
 export const Cell = (props: ColumnSchema) => {
   switch (props.type) {
@@ -40,6 +41,9 @@ export const Cell = (props: ColumnSchema) => {
     }
     case "markdown": {
       return <MarkdownCell {...props} />
+    }
+    case "dynamic": {
+      return <DynamicCell {...props} />
     }
   }
   throw new Error(

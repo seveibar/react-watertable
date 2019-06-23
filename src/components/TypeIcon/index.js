@@ -69,6 +69,13 @@ export const TypeIcon = props => {
         </div>
       )
     }
+    case "dynamic": {
+      return (
+        <div {...props} className={c.icony}>
+          D
+        </div>
+      )
+    }
   }
   return null
 }

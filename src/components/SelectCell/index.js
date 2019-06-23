@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   }
 })
 
-const customStyles = {
+export const customStyles = {
   container: provided => ({
     ...provided,
     border: "none",
@@ -71,8 +71,8 @@ export const SelectCell = props => {
     props.value === undefined
       ? []
       : typeof props.value === "string"
-        ? [props.value]
-        : props.value || []
+      ? [props.value]
+      : props.value || []
 
   const invalidValue = values.find(v => !optionMap[v])
   if (invalidValue)
