@@ -20,10 +20,13 @@ export const TextCell = props => {
     <BaseCell
       {...props}
       onClear={e => e.key === "Delete" && props.onChange("")}
-      readContent={props.value}
+      readContent={
+        props.value || <div style={{ opacity: 0.5 }}>{props.placeholder}</div>
+      }
       editContent={
         <div>
           <InputBase
+            placeholder={props.placeholder}
             onChange={e => props.onChange(e.target.value)}
             autoFocus
             value={props.value}

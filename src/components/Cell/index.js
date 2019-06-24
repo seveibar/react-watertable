@@ -19,6 +19,9 @@ export const OmniCell = (props: ColumnSchema) => {
     case "text": {
       return <TextCell {...props} />
     }
+    case "text-array": {
+      return <TextCell {...props} type="text" multiple={true} />
+    }
     case "select": {
       return <SelectCell {...props} />
     }

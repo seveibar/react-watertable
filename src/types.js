@@ -11,6 +11,11 @@ export type TextColumn = {|
   type: "text"
 |}
 
+export type TextArrayColumn = {|
+  ...BaseColumn,
+  type: "text-array"
+|}
+
 export type SelectColumn = {|
   ...BaseColumn,
   type: "select",

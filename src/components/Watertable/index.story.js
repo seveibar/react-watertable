@@ -206,3 +206,10 @@ storiesOf("Watertable", module)
       onChangeData={action("onChangeData")}
     />
   ))
+  .add("Schemaless, No Items", () => (
+    <Watertable
+      tableName="Schemaless No Items"
+      data={[]}
+      onChangeData={action("onChangeData")}
+    />
+  ))

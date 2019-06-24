@@ -9,13 +9,14 @@ import { blue } from "@material-ui/core/colors"
 import Select from "react-select"
 import TypeIcon from "../TypeIcon"
 
-const defaultDynamicTypes = [
-  { value: { type: "text" }, label: "Text" },
-  { value: { type: "markdown" }, label: "Markdown" },
-  { value: { type: "boolean" }, label: "Boolean" },
-  { value: { type: "numeric" }, label: "Numeric" },
-  { value: { type: "json" }, label: "JSON" },
-  { value: { type: "json-array" }, label: "JSON Array" }
+export const defaultDynamicTypes = [
+  { value: { type: "text" }, label: "Text", example: "" },
+  { value: { type: "text-array" }, label: "Text Array", example: [""] },
+  { value: { type: "markdown" }, label: "Markdown", example: "#Markdown" },
+  { value: { type: "boolean" }, label: "Boolean", example: false },
+  { value: { type: "numeric" }, label: "Numeric", example: 0 },
+  { value: { type: "json" }, label: "JSON", example: {} },
+  { value: { type: "json-array" }, label: "JSON Array", example: [{}] }
 ]
 
 export default (props: ColumnSchema) => {
@@ -30,15 +31,18 @@ export default (props: ColumnSchema) => {
         typeof props.value[0] === "object"
       )
         return "json-array"
-      // TODO support multi selects w/ dynamic values
+      if (
+        Array.isArray(props.value) &&
+        props.length > 0 &&
+        typeof props.value[0] === "string"
+      )
+        return "text-array"
       if (typeof props.value === "object") return "json"
       if (typeof props.value === "number") return "numeric"
       if (typeof props.value === "boolean") return "boolean"
     }
     return props.defaultType || "text"
   })
-
-  console.log({ v: props.value })
 
   return (
     <div

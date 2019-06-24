@@ -12,6 +12,8 @@ import { SelectedCellProvider } from "../../hooks/use-selected-cell"
 import { saveAs } from "file-saver"
 import isEqual from "lodash/isEqual"
 import RawJSONEditor from "../RawJSONEditor"
+import { defaultDynamicTypes } from "../DynamicCell"
+import getTypeFromValue from "../../lib/get-type-from-value.js"
 
 const useStyles = makeStyles({
   root: {
@@ -56,12 +58,14 @@ export const Waterobject = ({
   displayConfig,
   tableName,
   downloadable,
+  canAddMore,
   rawEdit,
   onChange,
   onSave
 }) => {
   const c = useStyles()
   const theme = useTheme()
+  const [newKey, onChangeNewKey] = useState("")
   const [rawEditing, changeRawEditing] = useState(Boolean(rawEdit))
   const controlled = Boolean(onChange)
   let data, changeData
@@ -72,29 +76,21 @@ export const Waterobject = ({
     ;[data, changeData] = useState(inputData || {})
   }
 
-  if (!schema)
+  if (!schema) {
+    if (canAddMore === undefined) canAddMore = true
     schema = useMemo(() => {
       const obj = {}
       for (const [k, v] of Object.entries(data || {})) {
         if (!obj[k]) {
-          if (typeof v === "string" || typeof v === "number") {
-            obj[k] = { type: "text", title: k }
-          } else if (typeof v === "boolean") {
-            obj[k] = { type: "boolean", title: k }
-          } else if (
-            Array.isArray(v) &&
-            (typeof v[0] === "string" || typeof v[0] === "number")
-          ) {
-            obj[k] = { type: "text", multiple: true, title: k }
-          } else if (Array.isArray(v) && typeof v[0] === "object") {
-            obj[k] = { type: "json-array", title: k }
-          } else if (typeof v === "object") {
-            obj[k] = { type: "json", title: k }
+          obj[k] = {
+            ...getTypeFromValue(v),
+            title: k
           }
         }
       }
       return obj
     }, [data])
+  }
 
   const keys = Object.keys(schema)
   keys.sort()
@@ -109,15 +105,6 @@ export const Waterobject = ({
       [key]: value
     })
   }
-
-  // const onObjectChange = (newObj: Object) => {
-  //   for (const k of new Set(Object.keys(newObj).concat(Object.keys(data)))) {
-  //     if (!isEqual(newObj[k], data[k])) {
-  //       if (onChange) onChange(k, newObj[k])
-  //     }
-  //   }
-  //   changeData(newObj)
-  // }
 
   return (
     <div className={c.root}>
@@ -173,6 +160,36 @@ export const Waterobject = ({
                   />
                 </Row>
               ))}
+              {canAddMore && (
+                <Row>
+                  <Cell
+                    type="text"
+                    width={keyColWidth}
+                    height={50}
+                    onChange={newValue => {
+                      onChangeNewKey(newValue)
+                    }}
+                    first
+                    value={newKey}
+                    placeholder="New Row Key"
+                  />
+                  <Cell
+                    type="select"
+                    grow
+                    options={defaultDynamicTypes}
+                    onChange={newValue => {
+                      onCellChange(
+                        newKey,
+                        defaultDynamicTypes.find(a => a.value === newValue)
+                          .example
+                      )
+                      onChangeNewKey("")
+                    }}
+                    height={50}
+                    last
+                  />
+                </Row>
+              )}
             </SelectedCellProvider>
           </div>
         ) : (
