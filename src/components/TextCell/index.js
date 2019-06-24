@@ -4,6 +4,7 @@ import React from "react"
 import BaseCell from "../BaseCell"
 import InputBase from "@material-ui/core/InputBase"
 import JSONArrayCell from "../JSONArrayCell"
+import { useUnselectCell } from "../../hooks/use-selected-cell.js"
 
 export const TextCell = props => {
   if (props.multiple) {
@@ -16,6 +17,8 @@ export const TextCell = props => {
     )
   }
 
+  const unselectCell = useUnselectCell()
+
   return (
     <BaseCell
       {...props}
@@ -26,6 +29,11 @@ export const TextCell = props => {
       editContent={
         <div>
           <InputBase
+            onKeyDown={e => {
+              if (e.key === "Escape") {
+                unselectCell()
+              }
+            }}
             placeholder={props.placeholder}
             onChange={e => props.onChange(e.target.value)}
             autoFocus

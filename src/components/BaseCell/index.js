@@ -27,9 +27,9 @@ export const BaseCell = ({
 }) => {
   const c = useStyles()
   const theme = useTheme()
-  let selected, onSelect
+  let selected, onSelect, onUnselect
   if (editable) {
-    ;[selected, onSelect] = useSelectedCell()
+    ;[selected, onSelect, onUnselect] = useSelectedCell()
   }
   const latestOnDeselect = useEventCallback(onDeselect)
 
@@ -39,9 +39,10 @@ export const BaseCell = ({
     const listener = e => {
       if (e.key === "Delete" || e.key === "Backspace") {
         onClear(e)
+      } else if (e.key === "Escape") {
+        onUnselect()
       }
     }
-
     window.addEventListener("keydown", listener)
     return () => {
       if (selected && onDeselect) latestOnDeselect()
