@@ -11,7 +11,6 @@ import { ConfigureRowHeightButton } from "../ConfigureRowHeight"
 import { SearchButton } from "../SearchBar"
 import { grey } from "@material-ui/core/colors"
 import SaveIcon from "@material-ui/icons/Save"
-import NoteAdd from "@material-ui/icons/NoteAdd"
 import DownloadIcon from "@material-ui/icons/CloudDownload"
 import EditIcon from "@material-ui/icons/Edit"
 
@@ -30,8 +29,7 @@ export const TableHeader = ({
   tableName,
   onSave,
   onDownload,
-  onToggleRawEdit,
-  onAddColumn
+  onToggleRawEdit
 }) => {
   const c = useStyles()
 
@@ -57,13 +55,6 @@ export const TableHeader = ({
           onClick={onToggleRawEdit}
           Icon={EditIcon}
           text="Raw Edit"
-        />
-      )}
-      {onAddColumn && (
-        <ConfigureButtonBase
-          onClick={onAddColumn}
-          Icon={NoteAdd}
-          text="Add Column"
         />
       )}
       <div style={{ flexGrow: 1 }} />

@@ -14,24 +14,19 @@ storiesOf("Dynamic Cells", module).add("Basic", () => (
     tableName="Water Object"
     schema={{
       dynamicCellNoValue: {
-        type: "dynamic",
-        defaultType: "text"
+        type: "dynamic"
       },
       dynamicCellText: {
-        type: "dynamic",
-        defaultType: "text"
+        type: "dynamic"
       },
       dynamicCellMarkdown: {
-        type: "dynamic",
-        defaultType: "text"
+        type: "dynamic"
       },
       dynamicCellJSON: {
-        type: "dynamic",
-        defaultType: "text"
+        type: "dynamic"
       },
       dynamicCellJSONArray: {
-        type: "dynamic",
-        defaultType: "text"
+        type: "dynamic"
       }
     }}
     data={{
