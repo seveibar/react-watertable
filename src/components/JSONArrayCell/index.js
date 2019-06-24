@@ -41,7 +41,7 @@ export const JSONArrayCell = props => {
         <EditIcon className={c.icon} />
       </IconButton>
       {editing && (
-        <Dialog open onClose={() => changeEditing(false)}>
+        <Dialog open disableEscapeKeyDown onClose={() => changeEditing(false)}>
           <div style={{ minWidth: 500 }}>
             <Watertable
               downloadable={props.downloadable}

@@ -38,7 +38,7 @@ export const JSONCell = props => {
         <EditIcon className={c.icon} />
       </IconButton>
       {editing && (
-        <Dialog open onClose={() => changeEditing(false)}>
+        <Dialog open disableEscapeKeyDown onClose={() => changeEditing(false)}>
           <div style={{ minWidth: 500 }}>
             <Waterobject
               tableName={props.title}
