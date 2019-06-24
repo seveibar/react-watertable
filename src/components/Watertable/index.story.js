@@ -100,6 +100,7 @@ storiesOf("Watertable", module)
           title: "Markdown Cells",
           type: "markdown"
         },
+        numeric: { title: "Numeric", type: "numeric" },
         dynamic: {
           title: "Dynamic Cell",
           type: "dynamic"
