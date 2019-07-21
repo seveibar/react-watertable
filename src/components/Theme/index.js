@@ -1,8 +1,7 @@
 // @flow
 /* eslint-disable */
 
-import { install, makeStyles } from "@material-ui/styles"
-install()
+import { makeStyles } from "@material-ui/styles"
 
 import React, { createContext, useContext } from "react"
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme"
