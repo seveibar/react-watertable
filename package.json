@@ -47,7 +47,6 @@
     "@storybook/cli": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "@storybook/storybook-deployer": "^2.8.1",
-    "babel-loader": "^8.0.5",
     "babel-preset-react-app": "^7.0.2",
     "flow-bin": "^0.95.1",
     "react": "^16.8.5",
