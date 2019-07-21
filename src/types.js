@@ -11,6 +11,11 @@ export type TextColumn = {|
   type: "text"
 |}
 
+export type TextArrayColumn = {|
+  ...BaseColumn,
+  type: "text-array"
+|}
+
 export type SelectColumn = {|
   ...BaseColumn,
   type: "select",
@@ -56,6 +61,12 @@ export type JSONArrayColumn = {|
   schema?: ColumnSchema
 |}
 
+export type DynamicColumn = {|
+  ...BaseColumn,
+  type: "dynamic",
+  defaultType: string
+|}
+
 export type ColumnSchema =
   | TextColumn
   | SelectColumn
@@ -66,6 +77,7 @@ export type ColumnSchema =
   | JSONColumn
   | JSONArrayColumn
   | MarkdownColumn
+  | DynamicColumn
 
 export type TableSchema = {
   [columnId: string]: ColumnSchema

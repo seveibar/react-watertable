@@ -14,6 +14,7 @@ import { SelectedCellProvider } from "../../hooks/use-selected-cell"
 import Button from "@material-ui/core/Button"
 import Row from "./Row"
 import { saveAs } from "file-saver"
+import getTypeFromValue from "../../lib/get-type-from-value.js"
 
 const useStyles = makeStyles({
   root: {
@@ -68,6 +69,7 @@ export const Watertable = ({
   downloadable,
   onUpdateCell,
   onChangeData,
+  canAddColumns,
   canAddMore = true,
   canDelete = true,
   onDeleteRow: onDeleteRowProp,
@@ -86,31 +88,26 @@ export const Watertable = ({
     ;[data, changeData] = useState(inputData)
   }
 
-  if (!schema)
+  const [newCol, changeNewCol] = useState("")
+  const [newSchema, changeNewSchema] = useState({})
+
+  if (!schema) {
+    if (canAddColumns === undefined) canAddColumns = true
     schema = useMemo(() => {
       const obj = {}
       for (const row of data) {
         for (const [k, v] of Object.entries(row)) {
           if (!obj[k]) {
-            if (typeof v === "string" || typeof v === "number") {
-              obj[k] = { type: "text", title: k }
-            } else if (typeof v === "boolean") {
-              obj[k] = { type: "boolean", title: k }
-            } else if (
-              Array.isArray(v) &&
-              (typeof v[0] === "string" || typeof v[0] === "number")
-            ) {
-              obj[k] = { type: "text", multiple: true, title: k }
-            } else if (Array.isArray(v) && typeof v[0] === "object") {
-              obj[k] = { type: "json-array", title: k }
-            } else if (typeof v === "object") {
-              obj[k] = { type: "json", title: k }
+            obj[k] = {
+              ...getTypeFromValue(v),
+              title: k
             }
           }
         }
       }
-      return (obj: any)
-    }, data)
+      return { ...obj, ...newSchema }
+    }, [data, newSchema])
+  }
 
   const rowHeight = 50
 
@@ -183,10 +180,34 @@ export const Watertable = ({
               <ColumnHeaderCell
                 key={i}
                 {...col}
-                last={i === columns.length - 1}
+                last={!canAddColumns && i === columns.length - 1}
                 height={40}
               />
             ))}
+            {canAddColumns && (
+              <SelectedCellProvider>
+                <Cell
+                  width={200}
+                  onChange={changeNewCol}
+                  onDeselect={() => {
+                    if (newCol === "") return
+                    changeNewSchema({
+                      ...newSchema,
+                      [newCol]: {
+                        type: "dynamic",
+                        title: newCol
+                      }
+                    })
+                    changeNewCol("")
+                  }}
+                  editable
+                  type="text"
+                  last
+                  height={40}
+                  value={newCol}
+                />
+              </SelectedCellProvider>
+            )}
             <FillerCell
               height={40}
               style={{

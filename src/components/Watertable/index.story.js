@@ -99,6 +99,11 @@ storiesOf("Watertable", module)
         markdown: {
           title: "Markdown Cells",
           type: "markdown"
+        },
+        numeric: { title: "Numeric", type: "numeric" },
+        dynamic: {
+          title: "Dynamic Cell",
+          type: "dynamic"
         }
       }}
       data={[
@@ -199,6 +204,13 @@ storiesOf("Watertable", module)
         { name: "Sarah", color: "blue" }
       ]}
       canDelete={false}
+      onChangeData={action("onChangeData")}
+    />
+  ))
+  .add("Schemaless, No Items", () => (
+    <Watertable
+      tableName="Schemaless No Items"
+      data={[]}
       onChangeData={action("onChangeData")}
     />
   ))

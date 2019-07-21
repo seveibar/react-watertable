@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/styles"
 import { useTheme } from "../Theme"
 import { grey, blue } from "@material-ui/core/colors"
 import useSelectedCell from "../../hooks/use-selected-cell"
+import useEventCallback from "../../hooks/use-event-callback.js"
 
 const useStyles = makeStyles({})
 
@@ -20,33 +21,34 @@ export const BaseCell = ({
   backgroundColor,
   editContent,
   readContent,
+  onDeselect,
   onClear,
   children
 }) => {
   const c = useStyles()
   const theme = useTheme()
-  let selected, onSelect
+  let selected, onSelect, onUnselect
   if (editable) {
-    ;[selected, onSelect] = useSelectedCell()
+    ;[selected, onSelect, onUnselect] = useSelectedCell()
   }
+  const latestOnDeselect = useEventCallback(onDeselect)
 
-  useEffect(
-    () => {
-      if (!window) return () => {}
-      if (!selected) return () => {}
-      const listener = e => {
-        if (e.key === "Delete" || e.key === "Backspace") {
-          onClear(e)
-        }
+  useEffect(() => {
+    if (!window) return () => {}
+    if (!selected) return () => {}
+    const listener = e => {
+      if (e.key === "Delete" || e.key === "Backspace") {
+        onClear(e)
+      } else if (e.key === "Escape") {
+        onUnselect()
       }
-
-      window.addEventListener("keydown", listener)
-      return () => {
-        window.removeEventListener("keydown", listener)
-      }
-    },
-    [selected]
-  )
+    }
+    window.addEventListener("keydown", listener)
+    return () => {
+      if (selected && onDeselect) latestOnDeselect()
+      window.removeEventListener("keydown", listener)
+    }
+  }, [selected])
 
   return (
     <div

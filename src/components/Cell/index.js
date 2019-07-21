@@ -11,11 +11,16 @@ import BooleanCell from "../BooleanCell"
 import JSONCell from "../JSONCell"
 import JSONArrayCell from "../JSONArrayCell"
 import MarkdownCell from "../MarkdownCell"
+import DynamicCell from "../DynamicCell"
+import CellErrorBoundary from "../CellErrorBoundary"
 
-export const Cell = (props: ColumnSchema) => {
+export const OmniCell = (props: ColumnSchema) => {
   switch (props.type) {
     case "text": {
       return <TextCell {...props} />
+    }
+    case "text-array": {
+      return <TextCell {...props} type="text" multiple={true} />
     }
     case "select": {
       return <SelectCell {...props} />
@@ -41,9 +46,20 @@ export const Cell = (props: ColumnSchema) => {
     case "markdown": {
       return <MarkdownCell {...props} />
     }
+    case "dynamic": {
+      return <DynamicCell {...props} />
+    }
   }
   throw new Error(
     `Unknown Cell Configuration: "${JSON.stringify(props, null, "  ")}"`
+  )
+}
+
+export const Cell = (props: ColumnSchema) => {
+  return (
+    <CellErrorBoundary cellProps={props}>
+      <OmniCell {...props} />
+    </CellErrorBoundary>
   )
 }
 
