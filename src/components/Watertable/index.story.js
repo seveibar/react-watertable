@@ -214,3 +214,21 @@ storiesOf("Watertable", module)
       onChangeData={action("onChangeData")}
     />
   ))
+  .add("Schemaless Long Text Field", () => (
+    <Watertable
+      tableName="Schemaless No Items"
+      data={[
+        {
+          name:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In posuere, tellus vitae accumsan finibus, quam diam aliquam lacus, in dictum lectus sem sit amet quam. Vestibulum nec eros ipsum. Sed auctor maximus purus, non dictum enim lacinia eget. Sed magna turpis, sollicitudin at consequat a, luctus eu enim. Nam sagittis massa arcu, ut cursus sem molestie ac. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum sapien lorem, vehicula ut felis ac, blandit molestie eros. Donec dolor orci, bibendum vel ornare sit amet, semper id eros. Fusce consequat lacinia neque non feugiat.",
+          color: "red"
+        },
+        {
+          name:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In posuere, tellus vitae accumsan finibus, quam diam aliquam lacus, in dictum lectus sem sit amet quam. Vestibulum nec eros ipsum. Sed auctor maximus purus, non dictum enim lacinia eget. Sed magna turpis, sollicitudin at consequat a, luctus eu enim. Nam sagittis massa arcu, ut cursus sem molestie ac. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum sapien lorem, vehicula ut felis ac, blandit molestie eros. Donec dolor orci, bibendum vel ornare sit amet, semper id eros. Fusce consequat lacinia neque non feugiat.",
+          color: "blue"
+        }
+      ]}
+      onChangeData={action("onChangeData")}
+    />
+  ))
