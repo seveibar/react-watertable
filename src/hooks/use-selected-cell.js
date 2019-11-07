@@ -9,7 +9,9 @@ import React, {
 } from "react"
 export const SelectedCellContext = createContext({
   selectedCellId: null,
-  changeSelectedCellId: (cellId: string | null) => {}
+  changeSelectedCellId: (cellId: string | null) => {
+    console.error("Context is not properly configured")
+  }
 })
 
 export const SelectedCellProvider = ({ children }) => {
@@ -27,10 +29,17 @@ export const SelectedCellProvider = ({ children }) => {
       window.removeEventListener("keydown", listener)
     }
   }, [])
+
+  const selectedCellContextState = useMemo(
+    () => ({
+      selectedCellId,
+      changeSelectedCellId
+    }),
+    [selectedCellId]
+  )
+
   return (
-    <SelectedCellContext.Provider
-      value={{ selectedCellId, changeSelectedCellId }}
-    >
+    <SelectedCellContext.Provider value={selectedCellContextState}>
       <div>{children}</div>
     </SelectedCellContext.Provider>
   )
