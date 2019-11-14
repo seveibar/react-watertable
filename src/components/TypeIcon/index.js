@@ -69,6 +69,9 @@ export const TypeIcon = props => {
         </div>
       )
     }
+    case "datetime": {
+      return <AccessTime {...props} />
+    }
     case "dynamic": {
       return (
         <div {...props} className={c.icony}>
